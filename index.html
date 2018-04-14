@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,60 @@
     <title>My Todo List</title>
     <link rel="stylesheet" href="css/base.css">
 </head>
+
 <body>
-    <div class="container">
-        yes
-    </div>
+    <div class="container"><!-- 总容器开始 -->
+        <div class="task-add">
+            <input type="text" name="" id="">
+            <button type="submit">submit</button>
+        </div>
+        <div class="task-list"><!-- 清单列表开始 -->
+            <div class="task-item"><!-- 任务详情开始 -->
+                <span>
+                    <input type="checkbox" name="" id="">
+                </span>
+                <span class="task-content">item content 1</span>
+                <span>delete</span>
+                <span>detail</span>
+            </div>
+            <div class="task-item">
+                <span>
+                    <input type="checkbox" name="" id="">
+                </span>
+                <span class="task-content">item content 1</span>
+                <span>delete</span>
+                <span>detail</span>
+            </div>
+            <div class="task-item">
+                <span>
+                    <input type="checkbox" name="" id="">
+                </span>
+                <span class="task-content">item content 1</span>
+                <span>delete</span>
+                <span>detail</span>
+            </div>
+            <div class="task-item">
+                <span>
+                    <input type="checkbox" name="" id="">
+                </span>
+                <span class="task-content">item content 1</span>
+                <span>delete</span>
+                <span>detail</span>
+            </div><!-- 任务详情结束 -->
+        </div><!-- 清单列表结束 -->
+        <div class="task-detail"><!-- 任务详情开始 -->
+            <div class="content"></div>
+            <div>
+                <div class="desc"></div>
+            </div>
+            <div class="remind"><!-- 任务提醒开始 -->
+                <input type="date" name="" id="">
+                <button type="submit">submit</button>
+            </div><!-- 任务提醒介绍 -->
+        </div>
+    </div><!-- 总容器关闭 -->
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="js/base.js"></script>
 </body>
+
 </html>
