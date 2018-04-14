@@ -11,13 +11,17 @@
 </head>
 
 <body>
-    <div class="container"><!-- 总容器开始 -->
+    <div class="container">
+        <!-- 总容器开始 -->
+        <h1>Todo List</h1>
         <div class="task-add">
-            <input type="text" name="" id="">
+            <input type="text" name="" id="" placeholder="e.g. 下午记得学习">
             <button type="submit">submit</button>
         </div>
-        <div class="task-list"><!-- 清单列表开始 -->
-            <div class="task-item"><!-- 任务详情开始 -->
+        <div class="task-list">
+            <!-- 清单列表开始 -->
+            <div class="task-item">
+                <!-- 任务详情开始 -->
                 <span>
                     <input type="checkbox" name="" id="">
                 </span>
@@ -48,19 +52,36 @@
                 <span class="task-content">item content 1</span>
                 <span>delete</span>
                 <span>detail</span>
-            </div><!-- 任务详情结束 -->
-        </div><!-- 清单列表结束 -->
-        <div class="task-detail"><!-- 任务详情开始 -->
-            <div class="content"></div>
-            <div>
-                <div class="desc"></div>
             </div>
-            <div class="remind"><!-- 任务提醒开始 -->
-                <input type="date" name="" id="">
-                <button type="submit">submit</button>
-            </div><!-- 任务提醒介绍 -->
+            <div class="task-item">
+                <span>
+                    <input type="checkbox" name="" id="">
+                </span>
+                <span class="task-content">item content 1</span>
+                <span>delete</span>
+                <span>detail</span>
+            </div>
+            <!-- 任务详情结束 -->
         </div>
-    </div><!-- 总容器关闭 -->
+        <!-- 清单列表结束 -->
+        <div class="task-detail-mask"></div>
+        <div class="task-detail">
+            <!-- 任务详情开始 -->
+            <div class="content">e.g. 下午记得学习</div>
+            <div>
+                <div class="desc">
+                    <textarea></textarea>
+                </div>
+            </div>
+            <div class="remind">
+                <!-- 任务提醒开始 -->
+                <input type="date" name="" id="">
+                <!-- <button type="submit">submit</button> -->
+            </div>
+            <!-- 任务提醒介绍 -->
+        </div>
+    </div>
+    <!-- 总容器关闭 -->
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="js/base.js"></script>
 </body>

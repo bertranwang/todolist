@@ -1,8 +1,121 @@
 * {
-    background: rgba(0, 0, 0, .1);
+    /* background: rgba(0, 0, 0, .1); */
+    box-sizing: border-box;
+    transition: background .2s;
+    outline: 0;
 }
-
+body {
+    background: rgb(71, 117, 179);
+    color:#fff;
+}
 .container {
     max-width: 700px;
     margin: 0 auto;
+    position: relative;
+}
+h1 {
+    text-align: center;
+}
+.task-list {
+    margin: 5px 0;
+}
+input,
+.task-item,
+button,
+.task-detail-mask
+{
+    padding: 10px;
+    border-radius: 3px;
+}
+
+input {
+    background: #fff;
+}
+input[type=text],[type=date]{
+    border: 0;
+    display: block;
+    width: 100%;
+    background: #eee;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .5);
+}
+button {
+    display: inline-block;
+    border: 0;
+    cursor: pointer;
+}
+input[type=text]:hover,
+input[type=date]:focus,
+input[type=date]:hover,
+input[type=focus]:focus
+{
+    background: #Fff;
+}
+
+.task-add input[type=text]{
+    float: left;
+    width: 84%;
+    margin-right: 1%;
+}
+.task-add button[type=submit]{
+    background: rgb(112, 152, 206);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .5);
+    width: 15%;
+}
+.task-add button[type=submit]:hover{
+    background: rgb(189, 204, 223);
+}
+
+
+.task-item {
+    background: #FFF;
+    color: #333;
+    margin-bottom: 2px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .5);
+    cursor: pointer;
+}
+.task-item:hover {
+    background: #ddd;
+}
+
+.task-detail * {
+    margin-bottom: 10px;
+}
+
+.task-detail-mask {
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(40,40,40, .7);
+}
+.task-detail {
+    position: absolute;
+    bottom:0;
+    right: 0;
+    background: #fff;
+    padding: 10px;
+    width:50%;
+    height: 100%;
+    color:#333;
+}
+.task-detail .content {
+    padding: 10px;
+    font-weight: 900;
+    cursor: pointer;
+}
+textarea {
+    width:100%;
+    min-height: 100px;
+    border: none;
+    background: #ddd;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .5);
+}
+
+textarea:hover {
+        background: #fffffe;
+}
+.task-detail,
+.task-detail-mask {
+    display: none;
 }
