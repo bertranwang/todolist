@@ -12,6 +12,7 @@ body {
     max-width: 700px;
     margin: 0 auto;
     position: relative;
+    padding: 0 10px;
 }
 h1 {
     text-align: center;
@@ -118,4 +119,15 @@ textarea:hover {
 .task-detail,
 .task-detail-mask {
     display: none;
+}
+.action {
+    color: #888;
+    font-size: 90%;
+}
+
+.floatright {
+    float: right;
+}
+.task-content {
+    margin-left: 10px;
 }
