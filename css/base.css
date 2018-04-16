@@ -57,7 +57,7 @@ input[type=focus]:focus
     margin-right: 1%;
 }
 
-button[type=submit] {
+.primary {
     background: rgb(91, 146, 219);
     box-shadow: 0 2px 3px rgba(0, 0, 0, .5);
     color: #fff;
@@ -69,17 +69,21 @@ button[type=submit] {
     width: 15%;
 }
 
-.task-detail button[type=reset] {
+.cancel{
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .5);
     background: rgb(221, 58, 58);
     color: #333;
+}
+.remind button[type=reset] {
     float: right;
 }
-.task-detail button[type=reset]:hover {
+
+.cancel:hover {
     background: rgb(93, 107, 124);
     color: #fff;
 }
 
-button[type=submit]:hover{
+.primary:hover{
     background: rgb(189, 204, 223);
     color: #333;
 }
@@ -120,7 +124,7 @@ button[type=submit]:hover{
     background: #fff;
     padding: 10px;
     width:50%;
-    height: 300px;
+    height: 320px;
     color:#333;
     border-radius: 3px 0 0 3px;
     box-shadow: 0 1px 2px 2px rgba(0, 0, 0, .5);
@@ -198,3 +202,9 @@ float: right;
     width: 0;
     height: 0;
 }
+
+.remind_label {
+    display: block;
+    margin-bottom: 10px;
+}
+
