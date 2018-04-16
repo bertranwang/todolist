@@ -11,6 +11,11 @@
         , $update_form
         , $task_detail_content
         , $task_detail_content_input
+        ,$task_complete
+        ,$msg = $('.msg')
+        ,$msg_content = $msg.find('.msg-content')
+        ,$msg_confirm = $msg.find('.confirmed')
+        , $alerter = $('.alerter')
         ;
 
 
@@ -60,6 +65,12 @@
     }
 
 
+    function listen_msg_event() {
+        $msg_confirm.click(function () {
+            hide_msg();
+        })
+    }
+
     function listen_task_detail() {
         
         $('.task-item').dblclick(function () {
@@ -74,6 +85,25 @@
             show_task_detail(index);
         })
     }
+/* 监听任务是否完成 */
+    function listen_task_complete() {
+        $task_complete.click(function () {
+            var $this = $(this);
+        //    var is_complete = $this.is(':checked');
+            var index = $this.parent().parent().data('index');
+            // console.log(index);
+        //    update_task(index,{is_complete});
+            var item = store.get('task_list')[index];
+            if(item && item.complete){
+                update_task(index,{complete:false});
+                // $this.prop('checked',false);
+            }else{
+                update_task(index,{complete:true});
+                // $this.prop('checked',true);
+            }
+        })
+    }
+
 
 
     // $form_task_add.on('submit', function (e) {
@@ -94,9 +124,10 @@
     function update_task(index, data) {
         if (index === undefined || !task_list[index])
             return;
-        task_list[index] = data;
-        console.log(task_list[index]);
+            /* extend函数，将新值添加到旧值 */
+        task_list[index] = $.extend({},task_list[index],data);
         refresh_task_list();
+        console.log(task_list[index]);
     }
 
     /* 渲染指定任务 */
@@ -122,8 +153,9 @@
             + '</div>'
             + '</div>'
             + '<div class="remind input-item">'
-            + '<input type="date" name="remind_date" value="'
-            + item.remind_date
+            +'<label>提醒时间</label>'
+            + '<input class="datetime" type="text" name="remind_date" value="'
+            + (item.remind_date || '')
             + '">'
             + '<button type="submit">更新</button>'
             + '<button type="reset">取消</button>'
@@ -132,6 +164,7 @@
 
         $task_detail_info.html(null);
         $task_detail_info.html(tpl);
+        $(".datetime").datetimepicker();
         $update_form = $task_detail_info.find('form');
         $task_detail_content = $task_detail_info.find('.content');
         $task_detail_content_input = $task_detail_info.find('[name=content]');
@@ -193,14 +226,45 @@
     function render_task_list() {
         var $task_list = $('.task-list');
         $task_list.html(null);
+        var complete_items = [];
         for (var i = 0; i < task_list.length; i++) {
-            var $task = render_task_item(task_list[i], i);
+            // var $task;
+            var item = task_list[i];
+            if(item && item.complete){
+                complete_items[i] = item;
+                // $task = render_task_item(item, i);
+                // $task.find('.task-item').addClass('completed');
+                // $task_list.append($task);
+
+            }else
+                var $task = render_task_item(item, i);
             $task_list.prepend($task);
         }
+        console.log(complete_items);
+
+        for(var j = 0;j < complete_items.length;j++){
+            $task = render_task_item(complete_items[j], j);
+            if(!$task) continue;
+            $task.addClass('completed');
+            $task_list.append($task);
+        }
+
+        // console.log(complete_items);
+
+        // for (var j = 0; j < complete_items.length; j++) {
+        //     var item = complete_items[j];
+
+        //     var $task = render_task_item(item, j);
+
+        //     $task_list.append($task);   
+        // }
+
         $task_delete = $('.action.delete');
         $task_detail = $('.action.detail');
+        $task_complete = $('.task-item .complete');
         listen_task_delete();
         listen_task_detail();
+        listen_task_complete();
     }
 
     function render_task_item(data, index) {
@@ -209,7 +273,9 @@
             '<div class="task-item" data-index="'
             + index
             + '"><span>'
-            + '<input type="checkbox" name="" id=""></span>'
+            + '<input type="checkbox" name="" class="complete"'
+            + (data.complete ? 'checked': '')
+            +'></span>'
             + '<span class="task-content">'
             + data.content
             + '</span>'
@@ -219,13 +285,52 @@
             + '<span>'
             + '</div>';
 
-        return task_item_tpl;
+        return $(task_item_tpl);
     }
 
     function init() {
         task_list = store.get('task_list') || [];
-        render_task_list();
+        if(task_list.length){
+            render_task_list();
+        }
+        listen_msg_event();
+        task_remind_check();
         // store.clearAll();
+    }
+
+    function task_remind_check() {
+        // show_msg();
+        var current_timestamp;
+        var itl = setInterval(function () {
+            for (let i = 0; i < task_list.length; i++) {
+                var item = store.get('task_list')[i];
+                var task_timestamp;
+                if (!item || !item.remind_date || item.informed) {
+                    continue;
+                }
+                current_timestamp = (new Date()).getTime();
+                task_timestamp = (new Date(item.remind_date)).getTime();
+
+                if (current_timestamp - task_timestamp >= 1) {
+                    update_task(i,{informed:true});
+                    show_msg(item.content);
+                }
+
+            }
+        },500);
+    }
+
+    function show_msg(msg) {
+        // console.log(1);
+        if(!msg) return;
+        $msg_content.text(msg);
+        $alerter.get(0).play();
+        $msg.show();
+    }
+
+    function hide_msg(msg) {
+        // console.log(1);
+        $msg.hide();
     }
 
 })();

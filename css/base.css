@@ -168,3 +168,33 @@ textarea:hover {
 .task-content {
     margin-left: 10px;
 }
+.task-item.completed {
+    /* background: rgba(255, 255, 255, 0.4); */
+    color: #000;
+    opacity: 0.4;
+}
+
+.task-item.completed:after{
+content: " ";
+height: 1px;
+background: #aaa;
+width:96%;
+position: relative;
+top: -8px;
+display: block;
+float: right;
+}
+.msg{
+    display: none;
+    text-align: center;
+    background: #dd3434;
+    padding: 10px;
+}
+.confirmed {
+    cursor: pointer;
+}
+
+.alterer {
+    width: 0;
+    height: 0;
+}
