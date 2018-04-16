@@ -389,7 +389,7 @@
                 var $task = render_task_item(item, i);
             $task_list.prepend($task);
         }
-        console.log(complete_items);
+   //     console.log(complete_items);
 
         for(var j = 0;j < complete_items.length;j++){
             $task = render_task_item(complete_items[j], j);
